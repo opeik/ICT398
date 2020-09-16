@@ -77,7 +77,7 @@ auto PrefabManager::initialize_component(const Json &json, Component &component)
   auto visitor = Visitor{[json](ModelComponent &c) {
                            auto &afk = afk::Engine::get();
                            auto path =
-                               afk::io::get_resource_path(json.at("file_path"));
+                               afk::io::get_resource_path(json.at("file_path").get<std::string>());
                            c.model_handle = afk.renderer.get_model(path);
                          },
                          [](auto) {}};
